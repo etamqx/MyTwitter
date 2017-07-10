@@ -5,9 +5,13 @@ import java.util.Vector;
 public abstract class Perfil {
 	
 	private String usuario;
+	
 	private Vector<Perfil> seguidos;
+	
 	private Vector<Perfil> seguidores;
+	
 	private Vector<Perfil> timeline;
+	
 	private boolean ativo;
 	
 	
