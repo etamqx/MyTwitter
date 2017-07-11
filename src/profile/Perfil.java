@@ -10,30 +10,40 @@ public abstract class Perfil {
 	
 	private Vector<Perfil> seguidores;
 	
-	private Vector<Perfil> timeline;
+	private Vector<Tweet> timeline;
 	
 	private boolean ativo;
 	
 	
+	/* Método contrutor Perfil()
+	 * Recebe o nome do usuário, inicializa os vetores e torna o perfil ativo.
+	 * */
 	public Perfil(String usuario) {
 		this.usuario = usuario;
 		this.seguidos = new Vector<Perfil>();
 		this.seguidores = new Vector<Perfil>();
-		this.timeline = new Vector<Perfil>();
+		this.timeline = new Vector<Tweet>();
 		this.setAtivo(true);
 	}
 	
 	
-	public void addSeguido() {
-		//...
+	/* Método addSeguidor()
+	 * Adiciona seguidores(objetos do tipo Perfil) no atributo seguidores(Vector de Perfil)
+	 * (Considera que a condição de nome diferente já foi atendida.)
+	 * */
+	public void addSeguidor(Perfil usuario) {
+		this.seguidores.add(usuario);
 	}
 	
-	public void addSeguidor() {
-		//...
+	public void addSeguido(Perfil usuario) {
+		this.seguidos.add(usuario);
 	}
-	
-	public void addTweet() {
-		//...
+
+	/* Método addTweet()
+	 * Adiciona tweets no atributo timeline (vector de Tweet)
+	 * */
+	public void addTweet(Tweet tweet) {
+		this.timeline.add(tweet);
 	}
 	
 	public void setUsuario(String usuario) {
@@ -44,23 +54,16 @@ public abstract class Perfil {
 		return this.usuario;
 	}
 	
+	public Vector<Perfil> getSeguidores() {
+		return this.seguidores;
+	}
 
 	public Vector<Perfil> getSeguidos() {
-		//...
-		return null;
-		
+		return this.seguidos;
 	}
 	
-	public Vector<Perfil> getSeguidores() {
-		//...
-		return null;
-		
-	}
-	
-	
-	public void getTimeline() {
-		//...
-		
+	public Vector<Tweet> getTimeline() {
+		return this.timeline;
 	}
 	
 	public void setAtivo(boolean valor) {

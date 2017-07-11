@@ -1,6 +1,7 @@
 package twitter;
 
 import profile.*;
+
 import java.util.Vector;
 
 public interface ITwitter {

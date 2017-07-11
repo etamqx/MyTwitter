@@ -2,6 +2,7 @@ package twitter;
 
 import java.util.Vector;
 import profile.Perfil;
+import profile.Tweet;
 
 public class MyTwitter implements ITwitter {
 	
