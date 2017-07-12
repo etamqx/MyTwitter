@@ -3,10 +3,11 @@ package twitter;
 import java.util.Vector;
 import profile.*;
 import profile.exception.*;
+import repo.*;
 
 public class MyTwitter implements ITwitter {
 	
-	private IRepositorio repositorio;
+	private IRepositorioUsuario repositorio;
 	
 	public MyTwitter(IRepositorioUsuario repositorio) {
 		this.repositorio = repositorio;
