@@ -11,9 +11,9 @@ public class PIException extends Exception {
 		super("Perfil inexistente");
 		this.usuario = usuario;
 	}
-	
+		
 	public String alert() {
-		return "O usuário "+ this.usuario +" não existe.";
+		return "O(s) usuário(s) "+ this.usuario +" não existe(m).";
 	}
 	
 	public String getUsuario() {
