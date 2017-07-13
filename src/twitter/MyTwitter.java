@@ -61,17 +61,16 @@ public class MyTwitter implements ITwitter {
 	 * timeline do perfil do usuário e dos seus seguidores.
 	 **/
 	public void tweetar(String usuario, String mensagem) throws PIException, PDException, MFPException {
+		Perfil perfilAtual = this.repositorio.buscar(usuario);
 		Tweet tweet;
-		Perfil perfilAtual;
 		Vector<Perfil> seguidores;
 		
 		//Caso o usuário não esteja no repositório
-		if (this.repositorio.buscar(usuario) == null) {
+		if (perfilAtual == null) {
 			throw new PIException(usuario);
 		}	
 		
 		else {
-			perfilAtual = this.repositorio.buscar(usuario);
 			seguidores = perfilAtual.getSeguidores();
 			
 			//Se o perfil estiver inativo
@@ -100,18 +99,16 @@ public class MyTwitter implements ITwitter {
 	 * Recupera todos os tweets	da timeline do perfil do usuario informado.
 	 */
 	public Vector<Tweet> timeline(String usuario) throws PIException, PDException {
-		Perfil perfilAtual;
+		Perfil perfilAtual = this.repositorio.buscar(usuario);
 		
 		//Caso não exista o perfil no repo
-		if (this.repositorio.buscar(usuario) == null) {
+		if (perfilAtual == null) {
 			throw new PIException(usuario);
 		}
 		
 		else {
-			perfilAtual = this.repositorio.buscar(usuario);
-			
 			if(!perfilAtual.isAtivo()) {
-				throw new PDException(usuario);
+				throw new PDException(perfilAtual.getUsuario());
 			}
 			
 			else {
@@ -121,23 +118,152 @@ public class MyTwitter implements ITwitter {
 		
 	}
 	
+	/** Método tweets()
+	 *  Recupera todos os tweets de um determinado usuário em uma timeline de outro usuário.
+	 */
+	
 	public Vector<Tweet> tweets(String usuario) throws PIException, PDException {
-		//...
+		Perfil perfilAtual = this.repositorio.buscar(usuario);
+		Vector<Tweet> tweets = new Vector<Tweet>();
+		
+		if (perfilAtual == null) {
+			throw new PIException(usuario);
+		}
+		
+		else if (!perfilAtual.isAtivo()) {
+			throw new PDException(perfilAtual.getUsuario());
+		}
+		
+		else {
+			for (Tweet tweet: perfilAtual.getTimeline()) {
+				if(tweet.getUsuario().equals(usuario)) {
+					tweets.add(tweet);
+				}
+			}
+			
+			return tweets;
+		}
+		
 	}
 	
+	/** Método seguir()
+	 * Inclui o perfil do usuário seguidor na lista de seguidores do usuário seguido,
+	 * e também inclui o usuário seguido na lista de seguidos do usuário seguidor. 
+	 */	
 	public void seguir(String seguidor, String seguido) throws PIException, PDException, SIException {
-		//...
+		Perfil perfilSeguidor = this.repositorio.buscar(seguidor); 
+		Perfil perfilSeguido = this.repositorio.buscar(seguido);
+		
+		//Se os nomes são diferentes
+		if(!seguidor.equals(seguido)) {
+			//Se ambos existem
+			if ((perfilSeguidor != null) && (perfilSeguido != null)){
+				//Se ambos estão ativos, adiciona normalmente
+				if ((perfilSeguidor.isAtivo()) && (perfilSeguido.isAtivo())) {
+					perfilSeguidor.addSeguido(perfilSeguido);
+					perfilSeguido.addSeguidor(perfilSeguidor);
+				}
+				
+				//Um deles no mínimo está desativado
+				else {
+					if (!perfilSeguidor.isAtivo()){
+						throw new PDException(seguidor);
+					}
+					else {
+						throw new PDException(seguido);
+					}
+				}
+				
+			}
+			//Um deles no mínimo não existe
+			else {
+				if (perfilSeguidor == null) {
+					throw new PIException(seguidor);
+				}
+				else {
+					throw new PIException(seguido);
+				}
+			}
+		}
+		
+		//No caso de nomes iguais
+		else {
+			throw new SIException(seguido);
+		}
+		
 	}
 	
+	/** Método numeroSeguidores()
+	 * Devolve o número de seguidores do perfil do usuário informado.
+	 */
 	public int numeroSeguidores(String usuario) throws PIException, PDException {
-		//...
+		Perfil perfilAtual = this.repositorio.buscar(usuario);
+		int numeroSeguidores;
+		
+		if (perfilAtual != null) {
+			if (perfilAtual.isAtivo()) {
+				numeroSeguidores = 0;
+				for (Perfil perfil: perfilAtual.getSeguidores()){
+					if ((perfil != null) && (perfil.isAtivo())) {
+						numeroSeguidores++;
+					}
+				}
+				
+				return numeroSeguidores;
+			}
+			
+			else {
+				throw new PDException(perfilAtual.getUsuario());
+			}
+		}
+		
+		else {
+			throw new PIException(usuario);
+		}
 	}
 	
 	public Vector<Perfil> seguidores(String usuario) throws PIException, PDException {
-		//...
+		Perfil perfilAtual = this.repositorio.buscar(usuario);
+		Vector<Perfil> listaSeguidores = new Vector<Perfil>();
+		
+		if (perfilAtual != null) {
+			if (perfilAtual.isAtivo()) {
+				for (Perfil perfil: perfilAtual.getSeguidores()) {
+					if ((perfil != null) && (perfil.isAtivo())) {
+						listaSeguidores.add(perfil);
+					}
+				}
+				return listaSeguidores;
+			}
+			else {
+				throw new PDException(perfilAtual.getUsuario());
+			}
+		}	
+		else {
+			throw new PIException(usuario);
+		}
+		
 	}
 	
 	public Vector<Perfil> seguidos(String usuario) throws PIException, PDException {
-		//...
+		Perfil perfilAtual = this.repositorio.buscar(usuario);
+		Vector<Perfil> listaSeguidos = new Vector<Perfil>();
+		
+		if (perfilAtual != null) {
+			if (perfilAtual.isAtivo()) {
+				for (Perfil perfil: perfilAtual.getSeguidos()) {
+					if ((perfil != null) && (perfil.isAtivo())) {
+						listaSeguidos.add(perfil);
+					}
+				}
+				return listaSeguidos;
+			}
+			else {
+				throw new PDException(perfilAtual.getUsuario());
+			}
+		}	
+		else {
+			throw new PIException(usuario);
+		}		
 	}
 }
