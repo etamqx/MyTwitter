@@ -1,8 +1,6 @@
 package profile;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import time.MyTime;
 
 public class Tweet {
 	
@@ -10,11 +8,23 @@ public class Tweet {
 	
 	private String mensagem;
 	
-	private String data;
+	/* Atributos data e hora
+	 * Registram o momento da publicação.
+	 * O atributo instante apenas é usado para registrar o momento.
+	 * */
+	private String data; 
+	
+	private String hora;
+	
+	private MyTime instante;
 	
 	
+	/* Método construtor Tweet()
+	 * Define o usuário, a mensagem e o momento da publicação no ato de instanciação.
+	 * */
 	public Tweet(String usuario, String mensagem) {
 		this.setUsuario(usuario);
+		this.instante = new MyTime("Momento do Tweet");
 		this.setMensagem(mensagem);
 	}
 	
@@ -28,22 +38,28 @@ public class Tweet {
 	
 	public void setMensagem(String mensagem) {
 		this.mensagem = mensagem;
-		
-		DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
-		Calendar calobj = Calendar.getInstance();
-		this.setData(df.format(calobj.getTime()));	
+		this.setData();
+		this.setHora();
 	}
 	
 	public String getMensagem() {
 		return this.mensagem;
 	}
 	
-	public void setData(String data) {
-		this.data = data;
+	public void setData() {
+		this.data = this.instante.getCurrentDate();
+	}
+	
+	public void setHora() {
+		this.hora = this.instante.getCurrentTime();
 	}
 	
 	public String getData() {
 		return this.data;
+	}
+	
+	public String getHora() {
+		return this.hora;
 	}
 	
 }

@@ -10,7 +10,7 @@ public interface ITwitter {
 	
 	void cancelarPerfil(String usuario) throws PIException, PDException;
 	
-	void tweetar(String usuario, String mensagem) throws PIException, MFPException;
+	void tweetar(String usuario, String mensagem) throws PIException, PDException, MFPException;
 	
 	Vector<Tweet> timeline(String usuario) throws PIException, PDException;
 	
