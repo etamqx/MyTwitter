@@ -4,6 +4,7 @@ import java.util.Vector;
 import profile.*;
 import profile.exception.*;
 import repo.*;
+import repo.exception.*;
 
 public class MyTwitter implements ITwitter {
 	
@@ -23,14 +24,14 @@ public class MyTwitter implements ITwitter {
 	public void criarPerfil(Perfil usuario) throws PEException {
 		String nomeUsuario = usuario.getUsuario();
 		
-		if (this.repositorio.buscar(nomeUsuario) == null) {
+		try {
 			this.repositorio.cadastrar(usuario);
 			System.out.println("Usuário cadastrado com sucesso");
-		}
-		
-		else {
+			
+		} catch (UJCException ujce){
 			throw new PEException(nomeUsuario);
 		}
+		
 	}
 	
 	/* Método cancelarPerfil()
