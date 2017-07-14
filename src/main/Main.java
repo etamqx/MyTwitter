@@ -195,9 +195,9 @@ public class Main {
 										}
 										catch (PDException pde) {
 											System.out.println("Erro: " + pde.getMessage());
-										}
+										} //FALTA ADICIONAR ISSO NO GIT!!!
 										catch (SIException sie) {
-											sie.getMessage();
+											System.out.println("Erro: " + sie.getMessage());
 										}											
 										break;
 									
