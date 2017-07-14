@@ -12,7 +12,7 @@ public class UNCException extends Exception {
 		this.usuario = usuario;
 	}
 	
-	public String alert() {
+	public String getMessage() {
 		return "O usuário '" + this.usuario + "' não está cadastrado.";
 	}
 	

@@ -26,7 +26,7 @@ public class MyTwitter implements ITwitter {
 		
 		try {
 			this.repositorio.cadastrar(usuario);
-			System.out.println("Usuário cadastrado com sucesso");
+			System.out.println("Usuário cadastrado com sucesso.");
 			
 		} catch (UJCException ujce){
 			throw new PEException(nomeUsuario);
@@ -53,6 +53,7 @@ public class MyTwitter implements ITwitter {
 		
 		else {
 			perfilAtual.setAtivo(false);
+			System.out.println("Perfil desativado.");
 		}
 	}
 	
@@ -91,6 +92,8 @@ public class MyTwitter implements ITwitter {
 				for(Perfil seguidor: seguidores) {
 					seguidor.addTweet(tweet);
 				}
+				
+				System.out.println("Tweet realizado.");
 			}
 		}
 		
@@ -120,7 +123,7 @@ public class MyTwitter implements ITwitter {
 	}
 	
 	/** Método tweets()
-	 *  Recupera todos os tweets de um determinado usuário em uma timeline de outro usuário.
+	 *  Recupera todos os tweets de um determinado usuário postou.
 	 */
 	
 	public Vector<Tweet> tweets(String usuario) throws PIException, PDException {
@@ -163,6 +166,8 @@ public class MyTwitter implements ITwitter {
 				if ((perfilSeguidor.isAtivo()) && (perfilSeguido.isAtivo())) {
 					perfilSeguidor.addSeguido(perfilSeguido);
 					perfilSeguido.addSeguidor(perfilSeguidor);
+					
+					System.out.println("Você agora está seguindo " + seguido +" e seus tweets aparecerão na sua timeline.");
 				}
 				
 				//Um deles no mínimo está desativado

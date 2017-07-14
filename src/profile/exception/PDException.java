@@ -12,7 +12,7 @@ public class PDException extends Exception {
 		this.usuario = usuario;
 	}
 	
-	public String alert() {
+	public String getMessage() {
 		return "O usuário " + this.usuario + "está atualmente desativado";
 	}
 	

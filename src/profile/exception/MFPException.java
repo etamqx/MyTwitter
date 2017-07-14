@@ -12,11 +12,11 @@ public class MFPException extends Exception {
 		this.mensagem = mensagem;
 	}
 	
-	public String alert() {
-		return "A mensagem possui mais do que 140 caracteres!";
+	public String getMessage() {
+		return "A mensagem possui um número de caracteres inválido!";
 	}
 	
-	public String getUsuario() {
+	public String getMensagem() {
 		return this.mensagem;
 	}
 

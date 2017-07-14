@@ -2,6 +2,8 @@ package profile;
 
 import java.util.Vector;
 
+import profile.exception.SIException;
+
 public abstract class Perfil {
 	
 	private String usuario;
@@ -31,8 +33,14 @@ public abstract class Perfil {
 	 * Adiciona seguidores(objetos do tipo Perfil) no atributo seguidores(Vector de Perfil)
 	 * (Considera que a condição de nome diferente já foi atendida.)
 	 * */
-	public void addSeguidor(Perfil usuario) {
-		this.seguidores.add(usuario);
+	public void addSeguidor(Perfil usuario) throws SIException {
+		if (!this.usuario.equals(usuario)) {	
+			this.seguidores.add(usuario);
+		}
+		
+		else {
+			throw new SIException(usuario.getUsuario());
+		}
 	}
 	
 	public void addSeguido(Perfil usuario) {

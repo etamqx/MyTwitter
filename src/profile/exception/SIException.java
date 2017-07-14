@@ -12,7 +12,7 @@ public class SIException extends Exception {
 		this.usuario = usuario;
 	}
 	
-	public String alert() {
+	public String getMessage() {
 		return "Não é possível seguir a si próprio!";
 	}
 	

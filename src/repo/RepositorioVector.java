@@ -13,6 +13,7 @@ public class RepositorioVector implements IRepositorioUsuario {
 		this.perfis = new Vector<Perfil>();
 	}
 	
+	
 	public Perfil buscar(String usuario) {
 		for(Perfil perfil: perfis) {
 			if (perfil.getUsuario().equals(usuario)) {
@@ -39,6 +40,7 @@ public class RepositorioVector implements IRepositorioUsuario {
 	
 	/** Método atualizar()
 	 * Substitui o perfil antigo, se encontrado, por um novo perfil, com as informações já atualizadas.
+
 	 */
 	public void atualizar(Perfil usuario) throws UNCException{
 		Perfil perfilAntigo = this.buscar(usuario.getUsuario());
@@ -51,5 +53,11 @@ public class RepositorioVector implements IRepositorioUsuario {
 			throw new UNCException(usuario.getUsuario());
 		}
 	}
-
+	
+	
+	//Apenas para efeito de teste
+	public Vector<Perfil> getPerfis() {
+		return this.perfis;
+		
+	}
 }

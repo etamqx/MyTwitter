@@ -12,7 +12,7 @@ public class PIException extends Exception {
 		this.usuario = usuario;
 	}
 		
-	public String alert() {
+	public String getMessage() {
 		return "O(s) usuário(s) "+ this.usuario +" não existe(m).";
 	}
 	
