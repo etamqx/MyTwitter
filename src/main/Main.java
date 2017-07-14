@@ -7,6 +7,8 @@ import twitter.*;
 import java.util.Scanner;
 import main.exception.OIException;
 
+
+
 public class Main {
 	// AMAIN \O/
 
@@ -16,11 +18,12 @@ public class Main {
 	public static void main(String[] args) {
 		
 		/** Instancia as classes básicas para a execução do sistema
+		 *
 		 * 
 		 */
 		UserMenuInterface interfaceUsuario = new UserMenuInterface();
 		
-		RepositorioXStream repo = new RepositorioXStream();
+		RepositorioVector repo = new RepositorioVector();
 		
 		MyTwitter twitter = new MyTwitter(repo);
 		
@@ -147,9 +150,7 @@ public class Main {
 										}
 										catch(MFPException mfpe) {
 											mfpe.getMessage();
-										}
-										
-										
+										}								
 										break;
 										
 									//Ver timeline
@@ -162,8 +163,7 @@ public class Main {
 										}
 										catch (PDException pde) {
 											System.out.println("Erro: " + pde.getMessage());
-										}
-										
+										}								
 										break;
 									
 									//Ver seus tweets
@@ -176,8 +176,7 @@ public class Main {
 										}
 										catch (PDException pde) {
 											System.out.println("Erro: " + pde.getMessage());
-										}
-										
+										}									
 										break;
 										
 									//Seguir alguém
@@ -199,8 +198,7 @@ public class Main {
 										}
 										catch (SIException sie) {
 											sie.getMessage();
-										}	
-										
+										}											
 										break;
 									
 									//Mostrar número de seguidores
@@ -219,11 +217,29 @@ public class Main {
 										catch (PDException pde) {
 											System.out.println("Erro: " + pde.getMessage());
 										}										
-
 										break;
+										
 									
-									//Deslogar
+									//Listar seguidores	
 									case 6:
+										try {
+											for(Perfil seguidor: twitter.seguidores(nomeLogin)) {
+												System.out.println(seguidor.getUsuario());
+											}
+											interfaceUsuario.imprimirLinha();
+										
+										break;
+										} 
+										catch (PIException pie) {
+											System.out.println("Erro: " + pie.getMessage());
+										}
+										catch (PDException pde) {
+											System.out.println("Erro: " + pde.getMessage());
+										}
+										break;
+										
+									//Deslogar
+									case 7:
 										interfaceUsuario.imprimirLinha();
 										interfaceUsuario.despedida();
 										interfaceUsuario.imprimirEspaco();
@@ -237,20 +253,19 @@ public class Main {
 										interfaceUsuario.imprimirLinha();
 										interfaceUsuario.turnOff();																				
 										interfaceUsuario.imprimirEspaco();
-										continuaSistema = false;
 										continuaUsuario = false;
-										
+										continuaSistema = false;								
 										break;
 										
 									default:
 										//Não é nem pra chegar aqui
 										System.out.println("Erro crítico!");
+										
 								}
 							} catch (OIException oie) {
 								System.out.println("Erro: " + oie.getMessage());
 							}
 						}
-						
 						break;
 					
 					//Fechar
