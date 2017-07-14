@@ -123,7 +123,7 @@ public class MyTwitter implements ITwitter {
 	}
 	
 	/** Método tweets()
-	 *  Recupera todos os tweets de um determinado usuário postou.
+	 *  Recupera todos os tweets que um determinado usuário postou.
 	 */
 	
 	public Vector<Tweet> tweets(String usuario) throws PIException, PDException {

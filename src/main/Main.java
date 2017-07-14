@@ -8,6 +8,7 @@ import java.util.Scanner;
 import main.exception.OIException;
 
 public class Main {
+	// AMAIN \O/
 
 	/**
 	 * @param args
