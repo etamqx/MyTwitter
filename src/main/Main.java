@@ -132,6 +132,7 @@ public class Main {
 									case 1:
 										interfaceUsuario.imprimirLinha();
 										System.out.println("Novo Tweet: ");
+										entrada.nextLine();
 										String mensagem = entrada.nextLine();
 										interfaceUsuario.imprimirLinha();
 										try {
