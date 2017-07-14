@@ -53,11 +53,4 @@ public class RepositorioVector implements IRepositorioUsuario {
 			throw new UNCException(usuario.getUsuario());
 		}
 	}
-	
-	
-	//Apenas para efeito de teste
-	public Vector<Perfil> getPerfis() {
-		return this.perfis;
-		
-	}
 }

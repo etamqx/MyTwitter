@@ -20,7 +20,7 @@ public class Main {
 		 */
 		UserMenuInterface interfaceUsuario = new UserMenuInterface();
 		
-		RepositorioVector repo = new RepositorioVector();
+		RepositorioXStream repo = new RepositorioXStream();
 		
 		MyTwitter twitter = new MyTwitter(repo);
 		
@@ -238,6 +238,7 @@ public class Main {
 										interfaceUsuario.turnOff();																				
 										interfaceUsuario.imprimirEspaco();
 										continuaSistema = false;
+										continuaUsuario = false;
 										
 										break;
 										

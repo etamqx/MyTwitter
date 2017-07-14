@@ -131,7 +131,7 @@ public final class UserMenuInterface {
 		System.out.println("1 - Novo Tweet										   ");
 		System.out.println("2 - Ver sua timeline								   ");
 		System.out.println("3 - Ver seus tweets									   ");
-		System.out.println("4 - Seguir alguém									   ");
+		System.out.println("4 - Seguir      									   ");
 		System.out.println("5 - Mostrar número de seguidores					   ");
 		System.out.println("6 - Deslogar 										   ");
 		System.out.println("0 - Fechar											   ");

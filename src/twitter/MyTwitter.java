@@ -167,7 +167,7 @@ public class MyTwitter implements ITwitter {
 					perfilSeguidor.addSeguido(perfilSeguido);
 					perfilSeguido.addSeguidor(perfilSeguidor);
 					
-					System.out.println("Você agora está seguindo " + seguido +" e seus tweets aparecerão na sua timeline.");
+					System.out.println("Você agora está seguindo " + seguido +" e seus tweets \naparecerão na sua timeline a partir de agora.");
 				}
 				
 				//Um deles no mínimo está desativado
