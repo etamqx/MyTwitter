@@ -133,7 +133,8 @@ public final class UserMenuInterface {
 		System.out.println("3 - Ver seus tweets									   ");
 		System.out.println("4 - Seguir      									   ");
 		System.out.println("5 - Mostrar número de seguidores					   ");
-		System.out.println("6 - Deslogar 										   ");
+		System.out.println("6 - Listar seguidores                                  ");
+		System.out.println("7 - Deslogar 										   ");
 		System.out.println("0 - Fechar											   ");
 		System.out.println("                                                       ");
 		System.out.println("Opção escolhida: ");
@@ -142,7 +143,7 @@ public final class UserMenuInterface {
 		System.out.println("                                                       ");
 				
 		i = 0;
-		while(i<=6) {
+		while(i<=7) {
 			if (opcao == i) {
 				retorna = true;
 			}
